@@ -30,12 +30,22 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e);
+
+    if (!description) return; // to make sure it dont print empty items
+
+    const newItem = { description, quantity, packed: false, id: Date.now() };
+    console.log(newItem);
+
+    setDescription("");
+    setQuantity(1);
   }
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip? 😍</h3>
-      <select value={quantity} onChange={(e)=> setQuantity(e.target.value)}>
+      <select
+        value={quantity}
+        onChange={(e) => setQuantity(Number(e.target.value))}
+      >
         {/* <option value={1}>1</option>
         <option value={2}>2</option>
         <option value={3}>3</option> */}
